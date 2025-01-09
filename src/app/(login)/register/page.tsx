@@ -10,7 +10,7 @@ export default function Page() {
         Create an account
       </h2>
       <form className="w-full flex flex-col gap-3">
-        <Field label="Name" />
+        <Field label="Email" type='email' />
         <Field label="Password" type="password" />
         <Field label="Repeat Password" type="password" />
 

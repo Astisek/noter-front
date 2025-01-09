@@ -1,51 +1,53 @@
-'use client'
-import { ReactComponent as Logout } from '@/assets/upload.svg';
+'use client';
+
+import Image from 'next/image';
+import profilePlaceholder from '@/assets/images/profile-placeholder.png';
+import { ReactComponent as Logout } from '@/assets/svg/upload.svg';
+import { ReactComponent as Trash } from '@/assets/svg/trash.svg';
+import { ReactComponent as Edit } from '@/assets/svg/edit.svg';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
-import { TextArea } from '@/components/TextArea';
 import Link from 'next/link';
 
 export default function Page() {
   return (
-    <div className="w-full flex">
-      <div className="w-1/4 min-w-80 bg-background-50 shadow-inner h-screen flex flex-col  gap-2">
-        <div className="border-b border-b-1 border-gray-600 p-2 flex justify-between items-center">
-          <p className="text-ellipsis w-4/5 text-text">Name</p>
+    <div>
+      <header className="container m-auto">
+        <div className="p-2 flex justify-between items-center">
+          <div className="flex gap-6 items-center">
+            <Image
+              src={profilePlaceholder}
+              alt="Avatar"
+              className="w-12 rounded-full"
+            />
+            <p className="text-ellipsis w-4/5 text-text text-lg">Astisek</p>
+          </div>
 
           <Logout className="w-9 cursor-pointer hover:scale-110 transition-transform" />
         </div>
-
-        <div className="px-2 py-1">
-          <Input className="ring-1 w-full text-sm" placeholder="Search" />
+      </header>
+      <section className="container m-auto mt-10">
+        <div className="flex gap-4 mb">
+          <Button>Add category</Button>
+          <Input placeholder="Search..." className="flex-1" />
         </div>
 
-        <div className="px-2 py-1">
-          <Button className="w-full py-2">Add note</Button>
-        </div>
-
-        <div>
-          <p className="text-sm px-2 py-1 text-gray-400">List</p>
-        </div>
-
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex flex-col gap-4 w-full mt-5">
           <Link
-            href={'#'}
-            className="py-3 px-2 text-text flex items-center hover:bg-primary transition-colors rounded"
+            href="#"
+            className="w-full p-3 bg-gray-700 bg-opacity-55 rounded-md flex justify-between hover:ring-1 ring-primary transition-all"
           >
-            <div>NoteItem</div>
-            <div className=''>
-              
+            <div>
+              <p className="text-xl text-text">Category name</p>
+              <p className="text-gray-400 ">Items count: 40</p>
+            </div>
+            <div className="gap-2 items-center hidden">
+              <Edit className="fill-text w-8 h-8" />
+              <Trash className="fill-text w-8 h-8" />
             </div>
           </Link>
         </div>
-      </div>
-
-      <div className="flex-1 py-10 overflow-y-auto h-screen">
-        <div className="px-32 w-full h-full">
-          <TextArea placeholder="Write some text..." />
-        </div>
-      </div>
-      {/* <Modal onClose={() => {}} open /> */}
+      </section>
     </div>
   );
 }

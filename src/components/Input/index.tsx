@@ -9,7 +9,7 @@ export const Input = ({
     <input
       {...props}
       name={name}
-      className={`bg-background-50 p-3 outline-none focus:ring ring-gray-400 transition-shadow rounded text-text text-lg ${className}`}
+      className={`input ${className}`}
     />
   );
 };

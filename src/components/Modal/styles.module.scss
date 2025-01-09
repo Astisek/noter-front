@@ -1,0 +1,11 @@
+
+.close {
+  &:before {
+    content: '';
+    @apply block w-8 h-0.5 bg-text rotate-45 translate-y-px;
+  }
+  &:after {
+    content: '';
+    @apply block w-8 h-0.5 bg-text -rotate-45;
+  }
+}

@@ -1,15 +1,22 @@
 import { ButtonHTMLAttributes, PropsWithChildren } from 'react';
+import s from './styles.module.scss';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: 'small' | 'medium';
+  variant?: 'primary' | 'outline'
+}
 
 export const Button = ({
   className,
+  children,
+  size = 'medium',
+  variant = 'primary',
   ...props
 }: PropsWithChildren<ButtonProps>) => {
   return (
     <button
       {...props}
-      className={`bg-primary hover:bg-hover text-text px-4 py-3 rounded transition-colors text-lg ${className}`}
-    ></button>
+      className={`${s.button} ${s[size]} ${s[variant]} ${className}`}
+    >{children}</button>
   );
 };
