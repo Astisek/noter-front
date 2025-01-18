@@ -1,6 +1,6 @@
 import { Button } from '@/components/Button';
 import { Field } from '@/components/Field';
-import { router } from '@/data/router';
+import { routerLinks } from '@/data/router';
 import Link from 'next/link';
 
 export default function Page() {
@@ -10,7 +10,7 @@ export default function Page() {
         Create an account
       </h2>
       <form className="w-full flex flex-col gap-3">
-        <Field label="Email" type='email' />
+        <Field label="Email" type="email" />
         <Field label="Password" type="password" />
         <Field label="Repeat Password" type="password" />
 
@@ -18,7 +18,7 @@ export default function Page() {
 
         <p className="text-gray-600 text-xl text-center">
           Already have an account?{' '}
-          <Link className="text-hover" href={router.login}>
+          <Link className="text-hover" href={routerLinks.login}>
             Sign in
           </Link>
         </p>

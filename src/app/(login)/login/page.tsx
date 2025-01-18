@@ -1,6 +1,6 @@
 import { Button } from '@/components/Button';
 import { Field } from '@/components/Field';
-import { router } from '@/data/router';
+import { routerLinks } from '@/data/router';
 import Link from 'next/link';
 
 export default function Page() {
@@ -17,7 +17,7 @@ export default function Page() {
 
         <p className="text-gray-600 text-xl text-center">
           Dont&apos;t have an account?{' '}
-          <Link className="text-hover" href={router.register}>
+          <Link className="text-hover" href={routerLinks.register}>
             Create an account
           </Link>
         </p>
