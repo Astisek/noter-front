@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
 
     return config;
   }, 
-  reactStrictMode: true, 
+  reactStrictMode: true,
 };
 
 export default nextConfig;
