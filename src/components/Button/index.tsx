@@ -3,7 +3,8 @@ import s from './styles.module.scss';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'small' | 'medium';
-  variant?: 'primary' | 'outline'
+  variant?: 'primary' | 'outline';
+  isLoading?: boolean;
 }
 
 export const Button = ({
@@ -11,12 +12,13 @@ export const Button = ({
   children,
   size = 'medium',
   variant = 'primary',
+  isLoading,
+  disabled,
   ...props
 }: PropsWithChildren<ButtonProps>) => {
   return (
-    <button
-      {...props}
-      className={`${s.button} ${s[size]} ${s[variant]} ${className}`}
-    >{children}</button>
+    <button {...props} className={`${s.button} ${s[size]} ${s[variant]} ${className}`} disabled={isLoading || disabled}>
+      {children}
+    </button>
   );
 };

@@ -5,10 +5,7 @@ export const api = axios.create({
   withCredentials: true,
 });
 
-export const setupInterceptors = (
-  handleError: (message: string) => void,
-  token: string
-) => {
+export const setupInterceptors = (handleError: (message: string) => void, token: string) => {
   api.interceptors.request.clear();
   api.interceptors.response.clear();
 
@@ -18,12 +15,13 @@ export const setupInterceptors = (
 
       return req;
     },
-    (e) => e
+    (e) => e,
   );
   api.interceptors.response.use(
     (res) => res,
     (e) => {
       handleError(e);
-    }
+      return e;
+    },
   );
 };

@@ -1,26 +1,30 @@
-import { Button } from '@/components/Button';
-import { Field } from '@/components/Field';
-import { routerLinks } from '@/data/router';
-import Link from 'next/link';
+import { useRegister } from '@/screens/Register/hooks/useRegister';
+import { IRegisterForm } from '@/screens/Register/models/register.model';
+import { RegisterPage } from '@/screens/Register/RegisterPage';
+import { registerSchema } from '@/screens/Register/schemas/register.schema';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useCallback } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 export const Register = () => {
+  const methods = useForm({
+    mode: 'onTouched',
+    resolver: yupResolver(registerSchema),
+    defaultValues: { email: '', login: '', password: '', repeatPassword: '' } as IRegisterForm,
+  });
+
+  const { context, data, isPending, mutate } = useRegister();
+
+  const onSubmit = useCallback(
+    ({ email, login, password }: IRegisterForm) => {
+      mutate({ email, password, username: login });
+    },
+    [mutate],
+  );
+
   return (
-    <div className="max-w-md w-full mx-auto flex justify-center flex-col h-screen items-center">
-      <h2 className="text-text text-4xl text-center font-bold mb-6">Create an account</h2>
-      <form className="w-full flex flex-col gap-3">
-        <Field label="Email" type="email" />
-        <Field label="Password" type="password" />
-        <Field label="Repeat Password" type="password" />
-
-        <Button>Sign up</Button>
-
-        <p className="text-gray-600 text-xl text-center">
-          Already have an account?{' '}
-          <Link className="text-hover" href={routerLinks.login}>
-            Sign in
-          </Link>
-        </p>
-      </form>
-    </div>
+    <FormProvider {...methods}>
+      <RegisterPage isLoading={isPending} onSubmit={onSubmit} />
+    </FormProvider>
   );
 };

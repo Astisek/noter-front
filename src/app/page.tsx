@@ -12,7 +12,7 @@ export default function Page() {
       router.push(routerLinks.app);
     }
     router.push(routerLinks.login);
-  }, []);
+  }, [router]);
 
   return <></>;
 }
