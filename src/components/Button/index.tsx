@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 import s from './styles.module.scss';
+import { Loader } from '@/components/Loader';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'small' | 'medium';
@@ -18,7 +19,7 @@ export const Button = ({
 }: PropsWithChildren<ButtonProps>) => {
   return (
     <button {...props} className={`${s.button} ${s[size]} ${s[variant]} ${className}`} disabled={isLoading || disabled}>
-      {children}
+      {!isLoading ? children : <Loader className={s.loader} />}
     </button>
   );
 };

@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     });
 
     return config;
-  }, 
+  },
   reactStrictMode: true,
 };
 

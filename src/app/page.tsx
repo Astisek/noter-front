@@ -1,18 +1,12 @@
-'use client';
 import { routerLinks } from '@/data/router';
-import { localStorageManager } from '@/utils/localStorage';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
-export default function Page() {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (localStorageManager.token) {
-      router.push(routerLinks.app);
-    }
-    router.push(routerLinks.login);
-  }, [router]);
-
-  return <></>;
+export default async function Page() {
+  const cookie = await cookies();
+  if (cookie.get('token')) {
+    redirect(routerLinks.category());
+  } else {
+    redirect(routerLinks.login());
+  }
 }

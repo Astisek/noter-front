@@ -1,25 +1,37 @@
-import { Button } from '@/components/Button';
-import { Field } from '@/components/Field';
+'use client';
+import { IServerError } from '@/api/models';
 import { routerLinks } from '@/data/router';
-import Link from 'next/link';
+import { LoginPage } from '@/screens/Login/components/LoginPage';
+import { useLogin } from '@/screens/Login/hooks/useLogin';
+import { ILoginForm } from '@/screens/Login/models/login.model';
+import { loginSchema } from '@/screens/Login/schemas/login.schema';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/navigation';
+import { FormProvider, useForm } from 'react-hook-form';
 
 export const Login = () => {
+  const router = useRouter();
+
+  const methods = useForm({
+    mode: 'onTouched',
+    resolver: yupResolver(loginSchema),
+    defaultValues: { email: '', password: '' } as ILoginForm,
+  });
+
+  const onLogin = () => {
+    router.push(routerLinks.category());
+  };
+
+  const { mutate, error, isPending } = useLogin(onLogin);
+
+  const onSubmit = (values: ILoginForm) => {
+    mutate(values);
+  };
+  const errorMessage = (error as IServerError)?.response?.data?.message;
+
   return (
-    <div className="max-w-md w-full mx-auto flex justify-center flex-col h-screen items-center">
-      <h2 className="text-text text-4xl text-center font-bold mb-6">Sign in to your account</h2>
-      <form className="w-full flex flex-col gap-3">
-        <Field label="Email" type="email" />
-        <Field label="Password" type="password" />
-
-        <Button>Sign in</Button>
-
-        <p className="text-gray-600 text-xl text-center">
-          Dont&apos;t have an account?{' '}
-          <Link className="text-hover" href={routerLinks.register}>
-            Create an account
-          </Link>
-        </p>
-      </form>
-    </div>
+    <FormProvider {...methods}>
+      <LoginPage isLoading={isPending} onSubmit={onSubmit} errorMessage={errorMessage} />
+    </FormProvider>
   );
 };

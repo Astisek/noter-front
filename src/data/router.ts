@@ -1,9 +1,11 @@
-export const routerLinks = {
-  login: '/login',
-  register: '/register',
-  app: '/app',
-  main: '/category',
-  category: '/category',
-  categoryView: '/category/[categoryId]/note/',
-  noteView: '/category/[categoryId]/note/[noteId]/',
-};
+class RouterLinks {
+  login = () => '/login';
+  register = () => '/register';
+  app = () => '/app';
+  main = () => `${this.app()}/category`;
+  category = () => `${this.app()}/category`;
+  categoryView = (categoryId: string) => `${this.app()}/category/${categoryId}/note/`;
+  noteView = (categoryId: string, noteId: string) => `${this.app()}/category/${categoryId}/note/${noteId}/`;
+}
+
+export const routerLinks = new RouterLinks();

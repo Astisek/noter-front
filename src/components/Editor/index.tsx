@@ -1,11 +1,7 @@
 'use client';
 import { TextareaHTMLAttributes, useCallback, useEffect, useRef } from 'react';
 
-export const Editor = ({
-  onChange,
-  className,
-  ...props
-}: TextareaHTMLAttributes<HTMLTextAreaElement>) => {
+export const Editor = ({ onChange, className, ...props }: TextareaHTMLAttributes<HTMLTextAreaElement>) => {
   const areaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleResize = useCallback(() => {

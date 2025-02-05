@@ -1,12 +1,11 @@
 import { api } from '@/api';
-import { IUserProfile } from '@/api/interfaces/user';
+import { IUserProfile } from '@/api/models/user';
+import { AxiosRequestConfig } from 'axios';
 
-class AuthApi {
+class UserApi {
   private baseUrl = 'user';
 
-  profile() {
-    return api.get<IUserProfile>(`${this.baseUrl}/profile`);
-  }
+  profile = (config?: AxiosRequestConfig) => api.get<IUserProfile>(`${this.baseUrl}/profile`, config);
 }
 
-export const authApi = new AuthApi();
+export const userApi = new UserApi();
