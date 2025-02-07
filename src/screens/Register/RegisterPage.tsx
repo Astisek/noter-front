@@ -14,7 +14,6 @@ interface RegisterPageProps {
 export const RegisterPage = ({ errorMessage, isLoading, onSubmit }: RegisterPageProps) => {
   const {
     handleSubmit,
-    register,
     formState: { errors },
   } = useFormContext<IRegisterForm>();
 
@@ -22,15 +21,10 @@ export const RegisterPage = ({ errorMessage, isLoading, onSubmit }: RegisterPage
     <div className="max-w-md w-full mx-auto flex justify-center flex-col h-screen items-center">
       <h2 className="text-text text-4xl text-center font-bold mb-6">Create an account</h2>
       <form className="w-full flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-        <Field label="Email" type="email" {...register('email')} error={errors?.email?.message} />
-        <Field label="Login" {...register('login')} error={errors?.login?.message} />
-        <Field label="Password" type="password" {...register('password')} error={errors?.password?.message} />
-        <Field
-          label="Repeat Password"
-          type="password"
-          {...register('repeatPassword')}
-          error={errors?.repeatPassword?.message}
-        />
+        <Field label="Email" type="email" name="email" error={errors?.email?.message} />
+        <Field label="Login" name="login" error={errors?.login?.message} />
+        <Field label="Password" type="password" name="password" error={errors?.password?.message} />
+        <Field label="Repeat Password" type="password" name="repeatPassword" error={errors?.repeatPassword?.message} />
 
         {!!errorMessage && <p className="text-red-500">{errorMessage}</p>}
 

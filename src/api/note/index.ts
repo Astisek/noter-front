@@ -10,6 +10,7 @@ class NoteApi {
     const search = queryString.stringify(query);
     return api.get<INote[]>(`${this.baseUrl}?${search}`);
   };
+  findOne = (id: string) => api.get<INote>(`${this.baseUrl}/${id}`);
   update = ({ data, id }: IUpdateNoteRequest) => api.put(`${this.baseUrl}/${id}`, data);
   delete = (id: string) => api.delete(`${this.baseUrl}/${id}`);
 }

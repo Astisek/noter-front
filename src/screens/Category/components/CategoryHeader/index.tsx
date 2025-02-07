@@ -5,7 +5,7 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { AddCategoryModal } from '@/screens/Category/components/AddCategoryModal';
 import { useCreateCategory } from '@/screens/Category/hooks/useCreateCategory';
 import { useCategoryStore } from '@/stores/category.store';
-import { ChangeEvent, useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 interface CategoryHeaderProps {
   search: string;
@@ -31,15 +31,11 @@ export const CategoryHeader = ({ search, onChangeSearch }: CategoryHeaderProps) 
     mutate({ name });
   };
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  };
-
   return (
     <>
       <div className="flex gap-4 mb">
         <Button onClick={toggleIsOpenAddModal}>Add category</Button>
-        <Input value={searchValue} onChange={handleSearch} placeholder="Search..." className="flex-1" />
+        <Input value={searchValue} onChange={setSearchValue} placeholder="Search..." className="flex-1" />
       </div>
       {isOpenAddModal && <AddCategoryModal onAccept={handleAccept} onCancel={toggleIsOpenAddModal} />}
     </>

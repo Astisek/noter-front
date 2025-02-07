@@ -15,8 +15,6 @@ export const AddCategoryModal = ({ onCancel, onAccept }: AddCategoryModalProps) 
     onAccept(text);
   };
 
-  const handleChangeText = (value: string) => setText(value);
-
   return (
     <Modal
       acceptText="Add"
@@ -26,7 +24,7 @@ export const AddCategoryModal = ({ onCancel, onAccept }: AddCategoryModalProps) 
       open
       title="Add New Category"
     >
-      <Input onChange={handleChangeText} value={text} className="w-96" />
+      <Input onChange={setText} value={text} className="w-96" />
     </Modal>
   );
 };

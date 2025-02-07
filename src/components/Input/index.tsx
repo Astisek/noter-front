@@ -4,13 +4,13 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChan
   onChange: (value: string) => void;
 }
 
-export const Input = ({ name, className, onChange, ...props }: InputProps) => {
+export const Input = ({ className, onChange, ...props }: InputProps) => {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange(e.target.value);
+      onChange(e?.target?.value);
     },
     [onChange],
   );
 
-  return <input {...props} name={name} className={`input ${className}`} onChange={handleChange} />;
+  return <input {...props} className={`input ${className}`} onChange={handleChange} />;
 };

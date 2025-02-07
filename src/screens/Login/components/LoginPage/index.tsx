@@ -15,15 +15,14 @@ export const LoginPage = ({ isLoading, onSubmit, errorMessage }: LoginPageProps)
   const {
     handleSubmit,
     formState: { errors },
-    register,
   } = useFormContext<ILoginForm>();
 
   return (
     <div className="max-w-md w-full mx-auto flex justify-center flex-col h-screen items-center">
       <h2 className="text-text text-4xl text-center font-bold mb-6">Sign in to your account</h2>
       <form className="w-full flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-        <Field label="Email" type="email" {...register('email')} error={errors?.email?.message} />
-        <Field label="Password" type="password" {...register('password')} error={errors?.password?.message} />
+        <Field name="email" label="Email" type="email" error={errors?.email?.message} />
+        <Field name="password" label="Password" type="password" error={errors?.password?.message} />
 
         {!!errorMessage && <p className="text-red-500">{errorMessage}</p>}
 

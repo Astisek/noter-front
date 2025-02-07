@@ -6,16 +6,16 @@ import { useState } from 'react';
 interface CreateNoteProps {
   open: boolean;
   toggleOpen: () => void;
-  categoryId: string
+  categoryId: string;
 }
 
 export const CreateNote = ({ open, categoryId, toggleOpen }: CreateNoteProps) => {
   const [title, setTitle] = useState('');
-  
-  const { mutate, isPending } = useCreateNote(toggleOpen)
+
+  const { mutate, isPending } = useCreateNote(toggleOpen);
 
   const handleAccept = () => {
-    mutate({ categoryId, title })
+    mutate({ categoryId, title });
   };
 
   return (
