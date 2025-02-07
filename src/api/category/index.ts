@@ -10,6 +10,7 @@ class CategoryApi {
     const search = queryString.stringify(data);
     return api.get<ICategory[]>(`${this.baseUrl}?${search}`);
   };
+  findOne = (id: string) => api.get<ICategory>(`${this.baseUrl}/${id}`);
   update = ({ data, id }: IUpdateCategoryRequest) => api.put<ICategory>(`${this.baseUrl}/${id}`, data);
   delete = (id: string) => api.delete(`${this.baseUrl}/${id}`);
 }

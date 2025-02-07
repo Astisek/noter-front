@@ -1,6 +1,6 @@
 'use client';
 import { CheckLoading } from '@/components/CheckLoading/CheckLoading';
-import { FullHeader } from '@/components/Header/FullHeader';
+import { Header } from '@/components/Header';
 import { CategoryHeader } from '@/screens/Category/components/CategoryHeader';
 import { CategoryList } from '@/screens/Category/components/CategoryList';
 import { useCategories } from '@/screens/Category/hooks/useCategories';
@@ -14,7 +14,7 @@ export const CategoryPage = () => {
 
   return (
     <div>
-      <FullHeader />
+      <Header />
 
       <section className="container m-auto mt-10">
         <CategoryHeader search={search} onChangeSearch={setSearch} />

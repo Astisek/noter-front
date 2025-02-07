@@ -24,6 +24,8 @@
       {
         "argsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "arrow-body-style": "warn",
+    "object-shorthand": "warn"
   }
 }

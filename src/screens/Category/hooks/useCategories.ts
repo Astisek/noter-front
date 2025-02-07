@@ -8,17 +8,15 @@ export const useCategories = (params: ICategoryRequest) => {
   const { setCategories } = useCategoryStore();
 
   const result = useQuery({
-    queryFn: () => {
-      return categoryApi.findAll(params);
-    },
+    queryFn: () => categoryApi.findAll(params),
     queryKey: ['category-all', params],
   });
 
   useEffect(() => {
-    if (result.data) {
+    if (result.isSuccess) {
       setCategories(result.data.data);
     }
-  }, [result.data, setCategories]);
+  }, [result.data, result.isSuccess, setCategories]);
 
   return result;
 };

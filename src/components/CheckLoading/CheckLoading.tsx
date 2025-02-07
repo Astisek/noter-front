@@ -5,6 +5,5 @@ interface CheckLoadingProps {
   isLoading: boolean;
 }
 
-export const CheckLoading = ({ isLoading, children }: PropsWithChildren<CheckLoadingProps>) => {
-  return isLoading ? <Loader /> : <>{children}</>;
-};
+export const CheckLoading = ({ isLoading, children }: PropsWithChildren<CheckLoadingProps>) =>
+  isLoading ? <Loader /> : <>{children}</>;
