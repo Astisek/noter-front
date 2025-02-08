@@ -25,7 +25,6 @@ export const Rate = () => {
             onChange={handleRateChange(onChange)}
             options={rateOptions}
             className="p-2"
-            placeholder="?"
           />
         )}
       />

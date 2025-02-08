@@ -12,3 +12,7 @@ export const rateOptions: IOption[] = rateValues.map((value) => ({
   value: value.toString(),
   label: value.toString(),
 }));
+rateOptions.unshift({
+  value: null,
+  label: '?',
+});
