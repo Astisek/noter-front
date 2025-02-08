@@ -1,5 +1,6 @@
 import { api } from '@/api';
 import { ICreateNoteRequest, INote, INoteRequest, IUpdateNoteRequest } from '@/api/models/note';
+import { AxiosRequestConfig } from 'axios';
 import queryString from 'query-string';
 
 class NoteApi {
@@ -10,7 +11,7 @@ class NoteApi {
     const search = queryString.stringify(query);
     return api.get<INote[]>(`${this.baseUrl}?${search}`);
   };
-  findOne = (id: string) => api.get<INote>(`${this.baseUrl}/${id}`);
+  findOne = (id: string, config: AxiosRequestConfig) => api.get<INote>(`${this.baseUrl}/${id}`, config);
   update = ({ data, id }: IUpdateNoteRequest) => api.put(`${this.baseUrl}/${id}`, data);
   delete = (id: string) => api.delete(`${this.baseUrl}/${id}`);
 }

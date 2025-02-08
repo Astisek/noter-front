@@ -14,7 +14,7 @@ export const Note = ({ note: { rate, title, updated_at, category, id } }: NotePr
   >
     <div className="text-ellipsis overflow-hidden">{title}</div>
     <div className="flex gap-3 items-center">
-      <p className="border border-text px-2 rounded-sm">
+      <p className="border border-text px-2 rounded-md">
         {rate || '?'}
         <span className="text-gray-400">/10</span>
       </p>

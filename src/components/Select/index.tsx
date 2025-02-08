@@ -19,19 +19,26 @@ export const Select = <T extends string>({
 }: SelectProps<T>) => {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      onChange(options[e.target.selectedIndex].value as T);
+      onChange(options[e.target.selectedIndex - 1].value as T);
     },
     [onChange, options],
   );
+
   return (
-    <select name={name} className={`input border-gray-400 border ${className}`} onChange={handleChange} {...props}>
+    <select
+      name={name}
+      className={`input border-gray-400 border ${className}`}
+      onChange={handleChange}
+      value={value}
+      {...props}
+    >
       {!!placeholder && (
-        <option value={value} disabled>
+        <option value={null} disabled>
           {placeholder}
         </option>
       )}
       {options.map((option) => (
-        <option value={value} key={option.value}>
+        <option value={option.value} key={option.value}>
           {option.label}
         </option>
       ))}

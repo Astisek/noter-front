@@ -1,7 +1,11 @@
 'use client';
 import { TextareaHTMLAttributes, useCallback, useEffect, useRef } from 'react';
 
-export const Editor = ({ onChange, className, ...props }: TextareaHTMLAttributes<HTMLTextAreaElement>) => {
+interface EditorProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'> {
+  onChange: (value: string) => void;
+}
+
+export const Editor = ({ onChange, className, ...props }: EditorProps) => {
   const areaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleResize = useCallback(() => {
@@ -16,7 +20,7 @@ export const Editor = ({ onChange, className, ...props }: TextareaHTMLAttributes
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     handleResize();
     if (onChange) {
-      onChange(e);
+      onChange(e.target.value);
     }
   };
 
@@ -24,7 +28,7 @@ export const Editor = ({ onChange, className, ...props }: TextareaHTMLAttributes
     <textarea
       onChange={handleChange}
       ref={areaRef}
-      className={`bg-transparent p-3 outline-none transition-shadow rounded text-text text-3xl w-full resize-none   ${className}`}
+      className={`bg-transparent p-3 outline-none transition-shadow rounded text-text text-3xl w-full resize-none ${className}`}
       {...props}
     />
   );

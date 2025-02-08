@@ -1,6 +1,6 @@
 import { Input } from '@/components/Input';
 import { useDebounce } from '@/hooks/useDebounce';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface NoteSearchProps {
   search: string;
@@ -10,14 +10,16 @@ interface NoteSearchProps {
 export const NoteSearch = ({ search, onSearch }: NoteSearchProps) => {
   const [searchText, setSearchText] = useState(search);
 
-  const debouncedSearch = useDebounce(searchText, 300);
-  useEffect(() => {
-    onSearch(debouncedSearch);
-  }, [debouncedSearch, onSearch]);
+  const debouncedOnSearch = useDebounce(onSearch, 300);
+
+  const handleChange = (value: string) => {
+    debouncedOnSearch(value);
+    setSearchText(value);
+  };
 
   return (
     <div className="px-2 py-1">
-      <Input className="ring-1 w-full text-sm" placeholder="Search" value={searchText} onChange={setSearchText} />
+      <Input className="ring-1 w-full text-sm" placeholder="Search" value={searchText} onChange={handleChange} />
     </div>
   );
 };

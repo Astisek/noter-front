@@ -21,7 +21,7 @@ export const NoteLayout = ({ children, categoryId }: PropsWithChildren<NoteLayou
   const [isOpenCreateModal, toggleIsOpenCreateModal] = useReducer((state) => !state, false);
 
   const { data: categoryData, isLoading: categoryIsLoading } = useCategory(categoryId);
-  const { isFetching: notesIsLoading,  refetch } = useNotes({ categoryId, search, sortBy });
+  const { isFetching: notesIsLoading, refetch } = useNotes({ categoryId, search, sortBy });
 
   useEffect(() => {
     refetch();

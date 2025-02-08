@@ -18,6 +18,16 @@ export const useNoteStore = create<INoteStore>((set) => ({
   deleteNote: (id) => set((state) => ({ notes: state.notes.filter((note) => note.id !== id) })),
   setNotes: (notes) => set({ notes }),
   updateNote: (note) =>
-    set((state) => ({ notes: state.notes.map((currentNote) => (note.id === currentNote.id ? note : currentNote)) })),
+    set((state) => {
+      const isActiveNote = note.id === state.activeNote?.id;
+      if (isActiveNote) {
+        state.setActiveNote({ ...state.activeNote, ...note });
+      }
+
+      state.notes = state.notes.map((currentNote) =>
+        note.id === currentNote.id ? { ...currentNote, ...note } : currentNote,
+      );
+      return state;
+    }),
   setActiveNote: (activeNote) => set({ activeNote }),
 }));
