@@ -19,9 +19,10 @@ export const Select = <T extends string>({
 }: SelectProps<T>) => {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      onChange(options[e.target.selectedIndex - 1].value as T);
+      const index = placeholder ? e.target.selectedIndex - 1 : e.target.selectedIndex;
+      onChange(options[index].value as T);
     },
-    [onChange, options],
+    [onChange, options, placeholder],
   );
 
   return (

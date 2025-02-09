@@ -16,14 +16,7 @@ export const AddCategoryModal = ({ onCancel, onAccept }: AddCategoryModalProps) 
   };
 
   return (
-    <Modal
-      acceptText="Add"
-      cancelText="Cancel"
-      onAccept={handleAccept}
-      onCancel={onCancel}
-      open
-      title="Add New Category"
-    >
+    <Modal acceptText="Add" cancelText="Cancel" onAccept={handleAccept} onCancel={onCancel} title="Add New Category">
       <Input onChange={setText} value={text} className="w-96" />
     </Modal>
   );

@@ -8,7 +8,7 @@ interface ClientProviderProps {
 }
 
 export const ClientLoginProvider = ({ children, userProfile }: PropsWithChildren<ClientProviderProps>) => {
-  const userStore = useRef(createUserStore({ profile: userProfile })).current
+  const userStore = useRef(createUserStore({ profile: userProfile })).current;
 
   return <UserStoreContext.Provider value={userStore}>{children}</UserStoreContext.Provider>;
 };

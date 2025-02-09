@@ -10,7 +10,7 @@ export const Rate = () => {
 
   const handleRateChange = (onChange: (value: string) => void) => (value: string) => {
     onChange(value);
-    changeField('rate')(+value);
+    changeField('rate')(+value || null);
   };
 
   return (

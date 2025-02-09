@@ -16,7 +16,7 @@ export const NoteContent = () => {
           {...field}
           onChange={changeField('content', onChange)}
           placeholder="Description..."
-          className="flex-1"
+          className="flex-1 scroll"
         />
       )}
     />

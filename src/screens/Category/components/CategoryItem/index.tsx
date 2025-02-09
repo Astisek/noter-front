@@ -33,17 +33,20 @@ export const Category = (props: CategoryProps) => {
   return (
     <>
       <CategoryItem {...props} onDelete={toggleIsOpenDelete} onEdit={toggleIsEdit} />
-      <Modal
-        acceptText="Delete"
-        cancelText="Cancel"
-        onAccept={handleDelete}
-        onCancel={toggleIsOpenDelete}
-        open={isOpenDelete}
-        title="Delete Category"
-        isLoadingAccept={isPending}
-      >
-        <p className="text-text">Are you sure you want to delete the category {name}? This action cannot be undone.</p>
-      </Modal>
+      {isOpenDelete && (
+        <Modal
+          acceptText="Delete"
+          cancelText="Cancel"
+          onAccept={handleDelete}
+          onCancel={toggleIsOpenDelete}
+          title="Delete Category"
+          isLoadingAccept={isPending}
+        >
+          <p className="text-text">
+            Are you sure you want to delete the category {name}? This action cannot be undone.
+          </p>
+        </Modal>
+      )}
     </>
   );
 };

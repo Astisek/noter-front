@@ -7,19 +7,18 @@ interface IUserState {
   profile: IUserProfile;
 }
 interface IUserStore extends IUserState {
-  updateProfile: (profile: IUserProfile) => void;
+  updateProfile: (profile: Partial<IUserProfile>) => void;
 }
 
-export const createUserStore = (init: IUserState) => {
-  return createStore<IUserStore>()((set) => ({
+export const createUserStore = (init: IUserState) =>
+  createStore<IUserStore>()((set) => ({
     ...init,
-    updateProfile: (profile: IUserProfile) => set({ profile }),
+    updateProfile: (profile) => set((state) => ({ profile: { ...state.profile, ...profile } })),
   }));
-};
 
 export const UserStoreContext = React.createContext<StoreApi<IUserStore>>(null);
 
-export const useUserStore  = () => {
-  const store = useContext(UserStoreContext)
-  return useStore(store)
-}
+export const useUserStore = () => {
+  const store = useContext(UserStoreContext);
+  return useStore(store);
+};

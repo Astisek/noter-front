@@ -4,12 +4,11 @@ import { useCreateNote } from '@/screens/NoteView/hooks/useCreateNote';
 import { useState } from 'react';
 
 interface CreateNoteProps {
-  open: boolean;
   toggleOpen: () => void;
   categoryId: string;
 }
 
-export const CreateNote = ({ open, categoryId, toggleOpen }: CreateNoteProps) => {
+export const CreateNote = ({ categoryId, toggleOpen }: CreateNoteProps) => {
   const [title, setTitle] = useState('');
 
   const { mutate, isPending } = useCreateNote(toggleOpen);
@@ -24,7 +23,6 @@ export const CreateNote = ({ open, categoryId, toggleOpen }: CreateNoteProps) =>
       cancelText="Cancel"
       onAccept={handleAccept}
       onCancel={toggleOpen}
-      open={open}
       title="Add New note"
       isLoadingAccept={isPending}
     >

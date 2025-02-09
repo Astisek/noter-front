@@ -1,3 +1,4 @@
+'use server';
 import { AxiosRequestConfig } from 'axios';
 import { cookies } from 'next/headers';
 

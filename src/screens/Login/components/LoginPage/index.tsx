@@ -18,7 +18,7 @@ export const LoginPage = ({ isLoading, onSubmit, errorMessage }: LoginPageProps)
   } = useFormContext<ILoginForm>();
 
   return (
-    <div className="max-w-md w-full mx-auto flex justify-center flex-col h-screen items-center">
+    <div className="max-w-md root-container flex justify-center flex-col h-screen items-center">
       <h2 className="text-text text-4xl text-center font-bold mb-6">Sign in to your account</h2>
       <form className="w-full flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
         <Field name="email" label="Email" type="email" error={errors?.email?.message} />

@@ -24,9 +24,14 @@ export const useNoteStore = create<INoteStore>((set) => ({
         state.setActiveNote({ ...state.activeNote, ...note });
       }
 
-      state.notes = state.notes.map((currentNote) =>
-        note.id === currentNote.id ? { ...currentNote, ...note } : currentNote,
-      );
+      state.notes = state.notes.reduce((notes, currentNote) => {
+        if (note.id === currentNote.id) {
+          notes.unshift({ ...currentNote, ...note });
+        } else {
+          notes.push(currentNote);
+        }
+        return notes;
+      }, []);
       return state;
     }),
   setActiveNote: (activeNote) => set({ activeNote }),

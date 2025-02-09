@@ -9,6 +9,7 @@ import { useNoteStore } from '@/stores/note.store';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import * as motion from 'motion/react-client';
 
 export interface NotePageProps {
   note: INote;
@@ -30,13 +31,19 @@ export const NotePage = ({ note }: NotePageProps) => {
   return (
     <FormProvider {...methods}>
       <NoteContextProvider>
-        <div className="flex-1 py-10 overflow-y-auto h-screen">
-          <div className="px-32 w-full h-full flex flex-col">
+        <motion.div
+          className="flex-1 py-10 overflow-y-auto h-screen"
+          key={note.id}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+        >
+          <div className="px-0 lg:px-32 w-full h-full flex flex-col">
             <NoteHeader />
 
             <NoteContent />
           </div>
-        </div>
+        </motion.div>
       </NoteContextProvider>
     </FormProvider>
   );

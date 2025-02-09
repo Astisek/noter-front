@@ -16,10 +16,8 @@ export const Button = ({
   isLoading,
   disabled,
   ...props
-}: PropsWithChildren<ButtonProps>) => {
-  return (
-    <button {...props} className={`${s.button} ${s[size]} ${s[variant]} ${className}`} disabled={isLoading || disabled}>
-      {!isLoading ? children : <Loader className={s.loader} />}
-    </button>
-  );
-};
+}: PropsWithChildren<ButtonProps>) => (
+  <button {...props} className={`${s.button} ${s[size]} ${s[variant]} ${className}`} disabled={isLoading || disabled}>
+    {!isLoading ? children : <Loader className={s.loader} />}
+  </button>
+);

@@ -11,7 +11,7 @@ class NoteApi {
     const search = queryString.stringify(query);
     return api.get<INote[]>(`${this.baseUrl}?${search}`);
   };
-  findOne = (id: string, config: AxiosRequestConfig) => api.get<INote>(`${this.baseUrl}/${id}`, config);
+  findOne = (id: string, config?: AxiosRequestConfig) => api.get<INote>(`${this.baseUrl}/${id}`, config);
   update = ({ data, id }: IUpdateNoteRequest) => api.put(`${this.baseUrl}/${id}`, data);
   delete = (id: string) => api.delete(`${this.baseUrl}/${id}`);
 }

@@ -1,11 +1,11 @@
 'use client';
-
 import { Button } from '@/components/Button';
 import s from './styles.module.scss';
 import { PropsWithChildren } from 'react';
+import { AnimatePresence } from 'motion/react';
+import * as motion from 'motion/react-client';
 
 interface ModalProps {
-  open: boolean;
   title: string;
   acceptText: string;
   cancelText: string;
@@ -15,7 +15,6 @@ interface ModalProps {
 }
 
 export const Modal = ({
-  open,
   title,
   onAccept,
   onCancel,
@@ -23,11 +22,16 @@ export const Modal = ({
   cancelText,
   children,
   isLoadingAccept,
-}: PropsWithChildren<ModalProps>) => {
-  return open ? (
-    <>
-      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="relative w-auto my-6 mx-auto max-w-3xl">
+}: PropsWithChildren<ModalProps>) => (
+  <>
+    <AnimatePresence>
+      <motion.div
+        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <div className="relative w-auto my-6 max-w-3xl mx-4 sm:mx-auto">
           {/*content*/}
 
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-background-100 outline-none focus:outline-none">
@@ -42,7 +46,7 @@ export const Modal = ({
 
             {/*body*/}
 
-            <div className="relative p-2   flex-auto">{children}</div>
+            <div className="relative p-2 flex-auto">{children}</div>
 
             {/*footer*/}
 
@@ -56,8 +60,8 @@ export const Modal = ({
             </div>
           </div>
         </div>
-      </div>
-      <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-    </>
-  ) : null;
-};
+      </motion.div>
+    </AnimatePresence>
+    <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+  </>
+);

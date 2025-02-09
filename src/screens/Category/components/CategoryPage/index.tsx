@@ -16,11 +16,10 @@ export const CategoryPage = () => {
     <div>
       <Header />
 
-      <section className="container m-auto mt-10">
+      <section className="root-container mt-10">
         <CategoryHeader search={search} onChangeSearch={setSearch} />
-
         <CheckLoading isLoading={isPending}>
-          <CategoryList categories={categories} />
+          <CategoryList key={search} categories={categories} />
         </CheckLoading>
       </section>
     </div>
