@@ -2,7 +2,7 @@ import { INotificationStore, NotificationEnum } from '@/models/notifications.mod
 import axios, { AxiosError } from 'axios';
 
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  baseURL: process.env.SERVER_BASE_URL || process.env.NEXT_PUBLIC_BASE_URL,
   withCredentials: true,
 });
 
