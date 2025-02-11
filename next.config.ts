@@ -18,7 +18,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [{ hostname: 'localhost' }],
   },
   reactStrictMode: true,
-  output: 'standalone',
 };
 
 export default withPWA(nextConfig);

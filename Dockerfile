@@ -1,38 +1,17 @@
-ARG NODE_VERSION=20.17.0
-ARG PNPM_VERSION=9.14.2
+FROM node:20-alpine
 
-FROM node:${NODE_VERSION}-alpine as base
+WORKDIR /app
 
-WORKDIR /usr/src/app
+RUN npm install -g pnpm@latest
 
-RUN --mount=type=cache,target=/root/.npm \
-    npm install -g pnpm@${PNPM_VERSION}
+COPY package.json pnpm-lock.yaml ./
 
-FROM base as deps
-
-RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=pnpm-lock.yaml,target=pnpm-lock.yaml \
-    --mount=type=cache,target=/root/.local/share/pnpm/store \
-    pnpm install --frozen-lockfile
-
-FROM deps as build
-
-RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=pnpm-lock.yaml,target=pnpm-lock.yaml \
-    --mount=type=cache,target=/root/.local/share/pnpm/store \
-    pnpm install --frozen-lockfile
+RUN pnpm install
 
 COPY . .
 
-RUN pnpm run build
+RUN pnpm build
 
-FROM base as final
+EXPOSE 3000
 
-USER node
-
-COPY package.json .
-
-COPY --from=deps /usr/src/app/node_modules ./node_modules
-COPY --from=build /usr/src/app/. ./.
-
-CMD node .next/standalone/server.js
+CMD ["pnpm", "start"]
