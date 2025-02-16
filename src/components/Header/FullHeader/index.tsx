@@ -3,6 +3,7 @@ import Image from 'next/image';
 import profilePlaceholder from '@/assets/images/profile-placeholder.png';
 import { ReactComponent as Logout } from '@/assets/svg/upload.svg';
 import { ChangeEvent } from 'react';
+import { backendUrl } from '@/utils/backendUrl';
 
 interface FullHeaderProps {
   avatarUrl: string;
@@ -17,7 +18,7 @@ export const FullHeader = ({ avatarUrl, onLogout, userName, onChangeAvatar }: Fu
     onChangeAvatar(file);
   };
 
-  const userAvatar = avatarUrl ? `${process.env.NEXT_PUBLIC_BASE_URL}${avatarUrl}` : profilePlaceholder;
+  const userAvatar = avatarUrl ? `${backendUrl()}${avatarUrl}` : profilePlaceholder;
 
   return (
     <header className="root-container">

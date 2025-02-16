@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { ReactComponent as Logout } from '@/assets/svg/upload.svg';
 import profilePlaceholder from '@/assets/images/profile-placeholder.png';
 import { ChangeEvent } from 'react';
+import { backendUrl } from '@/utils/backendUrl';
 
 interface NoteHeaderProps {
   avatarUrl: string;
@@ -16,7 +17,7 @@ export const NoteHeader = ({ avatarUrl, onLogout, userName, onChangeAvatar }: No
     onChangeAvatar(file);
   };
 
-  const userAvatar = avatarUrl ? `${process.env.NEXT_PUBLIC_BASE_URL}${avatarUrl}` : profilePlaceholder;
+  const userAvatar = avatarUrl ? `${backendUrl()}${avatarUrl}` : profilePlaceholder;
 
   return (
     <div className="border-b border-b-1 border-gray-600 p-2 flex justify-between items-center">
