@@ -1,21 +1,27 @@
 import { categoryApi } from '@/api/category';
 import { defaultMetadata } from '@/data/app';
+import { routerLinks } from '@/data/router';
 import { authConfig } from '@/utils/authOptions';
 import { generateTitle } from '@/utils/generateTitle';
 import { Metadata, NextPage } from 'next';
+import { redirect } from 'next/navigation';
 
 type Props = {
   params: Promise<{ categoryId: string }>;
 };
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
-  const { categoryId } = await params;
-  const { data: category } = await categoryApi.findOne(categoryId, await authConfig());
+  try {
+    const { categoryId } = await params;
+    const { data: category } = await categoryApi.findOne(categoryId, await authConfig());
 
-  return {
-    ...defaultMetadata,
-    title: generateTitle(category.name),
-  };
+    return {
+      ...defaultMetadata,
+      title: generateTitle(category.name),
+    };
+  } catch (_) {
+    redirect(routerLinks.category());
+  }
 };
 
 const Page: NextPage = () => (
