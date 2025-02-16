@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
     return config;
   },
   images: {
-    remotePatterns: [{ hostname: 'localhost' }],
+    remotePatterns: [{ hostname: 'localhost' }, { hostname: 'noter-backend' }],
   },
   reactStrictMode: true,
 };
