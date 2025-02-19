@@ -3,7 +3,7 @@ import Image from 'next/image';
 import profilePlaceholder from '@/assets/images/profile-placeholder.png';
 import { ReactComponent as Logout } from '@/assets/svg/upload.svg';
 import { ChangeEvent } from 'react';
-import { backendUrl } from '@/utils/backendUrl';
+import { serverBackendUrl } from '@/utils/backendUrl';
 
 interface FullHeaderProps {
   avatarUrl: string;
@@ -18,13 +18,13 @@ export const FullHeader = ({ avatarUrl, onLogout, userName, onChangeAvatar }: Fu
     onChangeAvatar(file);
   };
 
-  const userAvatar = avatarUrl ? `${backendUrl()}${avatarUrl}` : profilePlaceholder;
+  const userAvatar = avatarUrl ? `${serverBackendUrl()}${avatarUrl}` : profilePlaceholder;
 
   return (
     <header className="root-container">
       <div className="p-2 flex justify-between items-center">
         <div className="flex gap-6 items-center">
-          <label htmlFor="avatar">
+          <label htmlFor="avatar" className="cursor-pointer">
             <Image src={userAvatar} alt="Avatar" width={48} height={48} className="aspect-square rounded-full" />
           </label>
           <input type="file" className="hidden" id="avatar" accept="image/png,image/jpeg" onChange={handleChange} />

@@ -31,7 +31,7 @@ export const Category = (props: CategoryProps) => {
   }
 
   return (
-    <>
+    <div>
       <CategoryItem {...props} onDelete={toggleIsOpenDelete} onEdit={toggleIsEdit} />
       {isOpenDelete && (
         <Modal
@@ -47,6 +47,6 @@ export const Category = (props: CategoryProps) => {
           </p>
         </Modal>
       )}
-    </>
+    </div>
   );
 };

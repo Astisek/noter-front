@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { ReactComponent as Logout } from '@/assets/svg/upload.svg';
 import profilePlaceholder from '@/assets/images/profile-placeholder.png';
 import { ChangeEvent } from 'react';
-import { backendUrl } from '@/utils/backendUrl';
+import { serverBackendUrl } from '@/utils/backendUrl';
 
 interface NoteHeaderProps {
   avatarUrl: string;
@@ -17,12 +17,12 @@ export const NoteHeader = ({ avatarUrl, onLogout, userName, onChangeAvatar }: No
     onChangeAvatar(file);
   };
 
-  const userAvatar = avatarUrl ? `${backendUrl()}${avatarUrl}` : profilePlaceholder;
+  const userAvatar = avatarUrl ? `${serverBackendUrl()}${avatarUrl}` : profilePlaceholder;
 
   return (
     <div className="border-b border-b-1 border-gray-600 p-2 flex justify-between items-center">
       <div className="flex gap-3 items-center">
-        <label htmlFor="avatar" className="">
+        <label htmlFor="avatar" className="cursor-pointer">
           <Image
             src={userAvatar}
             alt="Avatar"

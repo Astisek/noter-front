@@ -9,9 +9,9 @@ interface CategoryListProps {
 export const CategoryList = ({ categories }: CategoryListProps) => (
   <motion.div
     className="flex flex-col gap-4 w-full mt-5"
-    initial={{ opacity: 0, transform: 'translateY(-40px)' }}
-    exit={{ opacity: 0, transform: 'translateY(-40px)' }}
-    animate={{ opacity: 1, transform: 'translateY(0)' }}
+    initial={{ opacity: 0 }}
+    exit={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     transition={{ duration: 0.3 }}
   >
     {categories.map(({ name, id, noteCount }) => (

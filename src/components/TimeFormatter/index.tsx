@@ -18,7 +18,9 @@ export const TimeFormatter = ({ isoTime }: TimeFormatterProps) => {
 
       let newFormattedTime = '';
 
-      if (diffInMinutes < 60) {
+      if (diffInMinutes < 1) {
+        newFormattedTime = 'now';
+      } else if (diffInMinutes < 60) {
         newFormattedTime = `${diffInMinutes} min`;
       } else if (diffInHours < 24) {
         newFormattedTime = date.toFormat('HH:mm');

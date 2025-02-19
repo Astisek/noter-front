@@ -2,7 +2,7 @@
   "name": "Noter",
   "description": "Noter is a service for creating your own rating collection. Organize movies, games, and more into categories, rate them, and add personal reviews.",
   "start_url": "/",
-  "lang": "ru-RU",
+  "lang": "en_US",
   "theme_color": "#151515",
   "display": "standalone",
   "icons": [
