@@ -3,8 +3,8 @@
 # Noter front-end
 Noter is a service for creating your own rating collection. Organize movies, games, and more into categories, rate them, and add personal reviews.
 
-**Backend project: https://github.com/Astisek/noter-backend**
-**Bootstrap project: https://github.com/Astisek/noter-bootstrap**
+**Backend project: https://github.com/Astisek/noter-backend**  
+**Bootstrap project: https://github.com/Astisek/noter-bootstrap**  
 
 #### Development  
 1. Clone project  
