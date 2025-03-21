@@ -6,6 +6,7 @@ import { useNotificationStore } from '@/stores/notification.store';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { PropsWithChildren, useEffect } from 'react';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 const queryClient = new QueryClient();
 
@@ -19,7 +20,11 @@ export const ClientProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}>
+          {children}
+        </GoogleReCaptchaProvider>
+      </QueryClientProvider>
       <NotificationController />
     </>
   );

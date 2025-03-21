@@ -25,7 +25,13 @@ export const FullHeader = ({ avatarUrl, onLogout, userName, onChangeAvatar }: Fu
       <div className="p-2 flex justify-between items-center">
         <div className="flex gap-6 items-center">
           <label htmlFor="avatar" className="cursor-pointer">
-            <Image src={userAvatar} alt="Avatar" width={48} height={48} className="aspect-square rounded-full" />
+            <Image
+              src={userAvatar}
+              alt="Avatar"
+              width={48}
+              height={48}
+              className="aspect-square rounded-full object-cover"
+            />
           </label>
           <input type="file" className="hidden" id="avatar" accept="image/png,image/jpeg" onChange={handleChange} />
           <p className="text-ellipsis w-4/5 text-text text-lg">{userName}</p>

@@ -1,5 +1,6 @@
 class RouterLinks {
   login = () => '/login';
+  registerFinal = () => '/register-final';
   register = () => '/register';
   app = () => '/app';
   main = () => `${this.app()}/category`;

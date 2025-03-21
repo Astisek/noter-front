@@ -28,7 +28,7 @@ export const NoteHeader = ({ avatarUrl, onLogout, userName, onChangeAvatar }: No
             alt="Avatar"
             height={24}
             width={24}
-            className="aspect-square rounded-full"
+            className="aspect-square rounded-full object-cover"
             priority={true}
           />
         </label>

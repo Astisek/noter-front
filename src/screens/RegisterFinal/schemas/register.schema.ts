@@ -1,4 +1,4 @@
-import { IRegisterForm } from '@/screens/Register/models/register.model';
+import { IRegisterForm } from '@/screens/RegisterFinal/models/register.model';
 import * as yup from 'yup';
 
 export const registerSchema = yup.object<IRegisterForm>({
@@ -17,4 +17,5 @@ export const registerSchema = yup.object<IRegisterForm>({
     .string()
     .required('Password confirmation is required')
     .test('password-match', 'Passwords do not match', (value, { parent }) => parent.password === value),
+  code: yup.string().required('Code required'),
 });

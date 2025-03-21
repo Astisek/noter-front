@@ -1,5 +1,5 @@
 import { defaultMetadata } from '@/data/app';
-import { Register } from '@/screens/Register';
+import { RegisterFinal } from '@/screens/RegisterFinal';
 import { generateTitle } from '@/utils/generateTitle';
 import { Metadata } from 'next';
 
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <Register />;
+  return <RegisterFinal />;
 }
