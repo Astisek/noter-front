@@ -6,4 +6,9 @@ export type INoteForm = InferType<typeof noteFormSchema>;
 export interface INoteContext {
   changeField: <T extends string | number>(name: string, onChange?: (value: T) => void) => (value: T) => void;
   isSaving: boolean;
+
+  isEdit: boolean;
+  toggleIsEdit: () => void;
+
+  handleSaveNote: () => void;
 }

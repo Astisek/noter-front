@@ -1,10 +1,16 @@
 import { useDebounce } from '@/hooks/useDebounce';
 import { NoteContext } from '@/screens/NoteView/data/noteContext';
 import { useUpdateNote } from '@/screens/NoteView/hooks/useUpdateNote';
+import { INoteForm } from '@/screens/NoteView/models/noteForm.model';
 import { useNoteStore } from '@/stores/note.store';
-import { PropsWithChildren, useCallback } from 'react';
+import { PropsWithChildren, useCallback, useReducer } from 'react';
+import { useFormContext } from 'react-hook-form';
 
 export const NoteContextProvider = ({ children }: PropsWithChildren) => {
+  const [isEdit, toggleIsEdit] = useReducer((state) => !state, false);
+
+  const { getValues } = useFormContext<INoteForm>();
+
   const { activeNote } = useNoteStore();
   const { mutate, isPending } = useUpdateNote();
 
@@ -25,5 +31,15 @@ export const NoteContextProvider = ({ children }: PropsWithChildren) => {
       [debouncedUpdateNote],
     );
 
-  return <NoteContext.Provider value={{ changeField, isSaving: isPending }}>{children}</NoteContext.Provider>;
+  const handleSaveNote = useCallback(() => {
+    const content = getValues('content');
+    toggleIsEdit();
+    changeField('content')(content);
+  }, [changeField, getValues]);
+
+  return (
+    <NoteContext.Provider value={{ changeField, isSaving: isPending, isEdit, toggleIsEdit, handleSaveNote }}>
+      {children}
+    </NoteContext.Provider>
+  );
 };

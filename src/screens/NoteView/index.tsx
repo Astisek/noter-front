@@ -32,7 +32,7 @@ export const NotePage = ({ note }: NotePageProps) => {
     <FormProvider {...methods}>
       <NoteContextProvider>
         <motion.div
-          className="flex-1 py-10 overflow-y-auto h-screen"
+          className="flex-1 py-10 overflow-y-auto h-screen px-3 lg:px-0"
           key={note.id}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

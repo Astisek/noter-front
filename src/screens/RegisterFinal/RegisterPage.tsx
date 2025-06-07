@@ -21,8 +21,13 @@ export const RegisterPage = ({ errorMessage, isLoading, onSubmit }: RegisterPage
     <div className="max-w-md root-container flex justify-center flex-col h-screen items-center">
       <h2 className="text-text text-4xl text-center font-bold mb-6">Create an account</h2>
       <form className="w-full flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-        <Field label="Email" type="email" name="email" disabled error={errors?.email?.message} />
-        <Field label="Code" name="code" error={errors?.code?.message} />
+        <div className="flex flex-col gap-1">
+          <Field label="Email" type="email" name="email" disabled error={errors?.email?.message} />
+
+          <p className="text-gray-400 text-sm">Check your email, the registration code has been sent there.</p>
+        </div>
+
+        <Field label="Code from email" name="code" error={errors?.code?.message} />
         <Field label="Login" name="login" error={errors?.login?.message} />
         <Field label="Password" type="password" name="password" error={errors?.password?.message} />
         <Field label="Repeat Password" type="password" name="repeatPassword" error={errors?.repeatPassword?.message} />

@@ -16,7 +16,7 @@ export const Title = () => {
           {...field}
           onChange={changeField('title', onChange)}
           placeholder="Title..."
-          className="text-3xl bg-background-100 ring-transparent flex-1"
+          className="text-3xl bg-background-100 ring-transparent flex-1 w-0"
         />
       )}
     />
