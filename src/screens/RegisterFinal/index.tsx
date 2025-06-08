@@ -20,7 +20,7 @@ export const RegisterFinal = () => {
   const methods = useForm({
     mode: 'onTouched',
     resolver: yupResolver(registerSchema),
-    defaultValues: { email, login: '', password: '', repeatPassword: '', code: '' } as IRegisterForm,
+    defaultValues: { email, login: '', password: '', repeatPassword: '' } as IRegisterForm,
   });
 
   const { isPending, mutate, error } = useRegister();

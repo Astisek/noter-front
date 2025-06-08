@@ -17,5 +17,4 @@ export const registerSchema = yup.object<IRegisterForm>({
     .string()
     .required('Password confirmation is required')
     .test('password-match', 'Passwords do not match', (value, { parent }) => parent.password === value),
-  code: yup.string().required('Code required'),
 });
